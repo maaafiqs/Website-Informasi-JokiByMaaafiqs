@@ -7,24 +7,34 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Source+Sans+3:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         /* ========================================
-        FINAL VERSION - POLISHED MOBILE UX
-        ======================================== */
+           THEME: SOFT PURPLE & WHITE (PASTEL)
+           ======================================== */
 
         /* -- 1. Global Styling & Variables -- */
         :root {
             --sidebar-width: 260px;
-            --bg-dark: #0a2a29;
-            --bg-card: #143f3c;
-            --text-primary: #e0e1dd;
-            --text-secondary: #a9c2c1;
-            --accent-color: #66fcf1;
-            --heading-color: #ffffff;
-            --border-radius: 8px;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            
+            /* Palette Warna Baru */
+            --bg-body: #fcfaff;          /* Putih dengan tint ungu sangat tipis */
+            --bg-sidebar: #ffffff;       /* Sidebar putih bersih */
+            --bg-card: #ffffff;          /* Kartu putih */
+            
+            --text-heading: #4a148c;     /* Ungu tua elegan untuk judul */
+            --text-primary: #5c5c5c;     /* Abu tua untuk teks isi */
+            --text-secondary: #888888;   /* Abu muda */
+            
+            --accent-main: #ce93d8;      /* Ungu Pastel Utama */
+            --accent-bold: #ab47bc;      /* Ungu yang lebih berani untuk tombol/icon */
+            --accent-faded: #f3e5f5;     /* Ungu sangat pudar untuk background section */
+            
+            --border-radius: 12px;
+            /* Shadow ungu pudar yang glowy */
+            --shadow-soft: 0 10px 40px rgba(171, 71, 188, 0.1); 
+            --shadow-card: 0 5px 20px rgba(156, 39, 176, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,44 +42,49 @@
 
         body {
             font-family: 'Source Sans 3', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-body);
+            background-image: linear-gradient(180deg, #fcfaff 0%, #f3e5f5 100%); /* Gradasi halus */
             color: var(--text-primary);
             line-height: 1.7;
         }
         
-        body.no-scroll {
-            overflow: hidden;
-        }
+        body.no-scroll { overflow: hidden; }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
-            color: var(--heading-color);
+            color: var(--text-heading);
         }
 
         /* -- 2. Sidebar Navigation Layout -- */
         .sidebar {
             position: fixed;
-            left: 0;
-            top: 0;
+            left: 0; top: 0;
             width: var(--sidebar-width);
             height: 100%;
-            background: var(--bg-card);
+            background: var(--bg-sidebar);
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 1002; /* Di atas overlay */
+            z-index: 1002;
             transition: transform 0.3s ease-in-out;
+            /* Border kanan halus */
+            border-right: 1px solid rgba(171, 71, 188, 0.1);
+            box-shadow: 5px 0 20px rgba(0,0,0,0.02);
         }
 
         .nav-logo {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--accent-color);
+            color: var(--accent-bold);
             text-decoration: none;
             margin-bottom: 50px;
             text-align: center;
+            padding: 10px 20px;
+            background: var(--accent-faded);
+            border-radius: 50px;
+            letter-spacing: -0.5px;
         }
 
         .nav-menu {
@@ -77,14 +92,12 @@
             width: 100%;
         }
 
-        .nav-item {
-            margin-bottom: 10px;
-        }
+        .nav-item { margin-bottom: 8px; }
 
         .nav-link {
             text-decoration: none;
             color: var(--text-secondary);
-            font-weight: 600;
+            font-weight: 500;
             font-family: 'Poppins', sans-serif;
             transition: all 0.3s ease;
             display: block;
@@ -93,8 +106,9 @@
         }
         
         .nav-link:hover {
-            background-color: var(--bg-dark);
-            color: var(--accent-color);
+            background-color: var(--accent-faded);
+            color: var(--accent-bold);
+            transform: translateX(5px);
         }
 
         /* -- 3. Main Content -- */
@@ -106,121 +120,204 @@
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            overflow: hidden;
+            overflow: visible; /* Diubah agar shadow tidak terpotong */
             padding: 0 40px;
         }
         
-        section { padding: 100px 0; overflow: hidden; }
+        section { padding: 100px 0; overflow: visible; }
         
-        /* Styles untuk elemen lain (tidak berubah) */
-        .section-title { font-size: 2.8rem; text-align: center; margin-bottom: 1rem; }
-        .section-subtitle { font-size: 1.1rem; text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 60px auto; }
-        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 1.5rem; }
-        .hero-content { text-align: center; }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2.5rem auto; color: var(--text-secondary); }
-        .btn { text-decoration: none; padding: 15px 35px; border-radius: 50px; font-weight: 600; font-family: 'Poppins', sans-serif; transition: all 0.3s ease; display: inline-block; }
-        .btn-primary { background-color: var(--accent-color); color: var(--bg-dark); box-shadow: 0 4px 20px rgba(102, 252, 241, 0.2); }
-        .btn-primary:hover { background-color: var(--heading-color); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
-        #services { background-color: var(--bg-card); }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .service-card { background: var(--bg-dark); padding: 35px; border-radius: var(--border-radius); box-shadow: var(--shadow); transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid var(--accent-color); }
-        .service-card:hover { transform: translateY(-10px); }
-        .service-card h3 { font-size: 1.3rem; margin-bottom: 15px; }
+        .section-title { 
+            font-size: 2.5rem; 
+            text-align: center; 
+            margin-bottom: 1rem; 
+            background: -webkit-linear-gradient(45deg, var(--text-heading), var(--accent-bold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle { 
+            font-size: 1.1rem; 
+            text-align: center; 
+            color: var(--text-secondary); 
+            max-width: 600px; 
+            margin: 0 auto 60px auto; 
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: radial-gradient(circle at top right, #f3e5f5 0%, transparent 40%);
+        }
+        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 1.5rem; color: var(--text-heading); }
+        .hero-content { text-align: center; padding-top: 40px; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2.5rem auto; color: var(--text-primary); }
+
+        /* Buttons */
+        .btn { 
+            text-decoration: none; padding: 15px 40px; border-radius: 50px; 
+            font-weight: 600; font-family: 'Poppins', sans-serif; 
+            transition: all 0.3s ease; display: inline-block; 
+            border: none; cursor: pointer;
+        }
+        
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--accent-main), var(--accent-bold)); 
+            color: white; 
+            box-shadow: 0 10px 20px rgba(171, 71, 188, 0.3); 
+        }
+        .btn-primary:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 30px rgba(171, 71, 188, 0.4); 
+            filter: brightness(1.05);
+        }
+
+        /* Services */
+        #services { background-color: transparent; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
+        
+        .service-card { 
+            background: var(--bg-card); 
+            padding: 40px 30px; 
+            border-radius: var(--border-radius); 
+            box-shadow: var(--shadow-card); 
+            transition: all 0.3s; 
+            border: 1px solid rgba(255,255,255,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Aksen garis ungu di atas kartu */
+        .service-card::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--accent-main), var(--accent-bold));
+        }
+
+        .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-soft); }
+        .service-card h3 { font-size: 1.4rem; margin-bottom: 20px; color: var(--text-heading); }
         .service-card ul { list-style-type: none; }
-        .service-card ul li { margin-bottom: 10px; color: var(--text-secondary); display: flex; align-items: flex-start; }
-        .service-card ul li::before { content: '✓'; color: var(--accent-color); font-weight: bold; margin-right: 10px; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
-        .benefit-item { display: flex; align-items: flex-start; gap: 20px; }
-        .benefit-icon { font-size: 2rem; color: var(--accent-color); }
-        .benefit-text p { color: var(--text-secondary); }
-        #how-to-order { background-color: var(--bg-card); }
-        .order-steps { display: flex; justify-content: space-between; text-align: center; gap: 30px; }
-        .step { flex: 1; padding: 20px; }
-        .step-number { width: 60px; height: 60px; border-radius: 50%; background-color: var(--bg-dark); color: var(--accent-color); display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; border: 3px solid var(--accent-color); box-shadow: 0 0 0 5px var(--bg-card); }
+        .service-card ul li { margin-bottom: 12px; color: var(--text-primary); display: flex; align-items: flex-start; font-size: 0.95rem; }
+        .service-card ul li::before { 
+            content: '✿'; /* Ganti centang dengan bunga/simbol bulat agar lebih soft */
+            color: var(--accent-bold); 
+            font-weight: bold; margin-right: 12px; 
+            font-size: 12px;
+            line-height: 24px;
+        }
+
+        /* Benefits */
+        #benefits { background-color: var(--accent-faded); border-radius: 50px 50px 0 0; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px; }
+        .benefit-item { display: flex; align-items: flex-start; gap: 20px; background: rgba(255,255,255,0.6); padding: 25px; border-radius: var(--border-radius); }
+        .benefit-icon { font-size: 2.2rem; padding: 10px; background: white; border-radius: 50%; width: 70px; height: 70px; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .benefit-text h3 { margin-bottom: 8px; color: var(--text-heading); }
+        .benefit-text p { color: var(--text-primary); font-size: 0.95rem; }
+
+        /* Order Steps */
+        #how-to-order { background-color: transparent; }
+        .order-steps { display: flex; justify-content: space-between; text-align: center; gap: 30px; position: relative; }
+        /* Garis penghubung tipis */
+        .order-steps::before {
+            content: ''; position: absolute; top: 50px; left: 10%; right: 10%; height: 2px;
+            background: #e0e0e0; z-index: -1;
+        }
+        
+        .step { flex: 1; padding: 20px; background: var(--bg-body); }
+        .step-number { 
+            width: 60px; height: 60px; border-radius: 50%; 
+            background: linear-gradient(135deg, var(--accent-main), var(--accent-bold)); 
+            color: white; 
+            display: inline-flex; align-items: center; justify-content: center; 
+            font-size: 1.5rem; font-weight: 700; margin-bottom: 25px; 
+            box-shadow: 0 0 0 8px var(--bg-body); /* Ring luar agar garis terpotong */
+        }
         .step h3 { font-size: 1.2rem; margin-bottom: 10px; }
-        #contact { background-color: var(--accent-color); color: var(--bg-dark); text-align: center; padding: 80px 0; }
-        #contact .section-title, #contact h3 { color: var(--bg-dark); }
-        #contact .section-subtitle { color: #105a55; }
+        .step p { font-size: 0.95rem; color: var(--text-primary); }
+
+        /* Contact Section */
+        #contact { 
+            background: linear-gradient(135deg, #ba68c8, #7b1fa2); 
+            color: white; 
+            text-align: center; 
+            padding: 80px 40px; 
+            border-radius: 30px;
+            margin: 0 20px 60px 20px; /* Membuat section mengambang */
+            box-shadow: 0 20px 50px rgba(123, 31, 162, 0.3);
+        }
+        #contact .section-title, #contact h3 { color: white; -webkit-text-fill-color: white; }
+        #contact .section-subtitle { color: rgba(255,255,255,0.9); }
         .contact-buttons { margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .btn-dark { background-color: var(--bg-dark); color: var(--heading-color); }
-        .btn-dark:hover { background-color: #000; }
-        .footer { background-color: var(--bg-card); color: var(--text-secondary); padding: 20px 0; text-align: center; border-top: 1px solid rgba(102, 252, 241, 0.1); }
-        .reveal { position: relative; opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+        
+        .btn-white { background-color: white; color: var(--accent-bold); }
+        .btn-white:hover { background-color: #f3e5f5; color: var(--text-heading); transform: translateY(-3px); }
+
+        /* Footer */
+        .footer { 
+            background-color: var(--bg-body); 
+            color: var(--text-secondary); 
+            padding: 30px 0; text-align: center; 
+            border-top: 1px solid #eee; font-size: 0.9rem; 
+        }
+
+        /* Animations */
+        .reveal { position: relative; opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         
         /* -- 4. Mobile Header & Hamburger Menu -- */
         .mobile-header {
             display: none;
             position: fixed;
-            width: 100%;
-            top: 0; left: 0;
+            width: 100%; top: 0; left: 0;
             z-index: 1001;
-            background: rgba(10, 42, 41, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
             padding: 0 25px;
             height: 70px;
             align-items: center;
             justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
+        .mobile-logo {
+            font-size: 1.4rem; font-weight: 700;
+            color: var(--accent-bold); text-decoration: none;
+        }
+
         .nav-toggle { background: none; border: none; cursor: pointer; z-index: 1003; }
         .hamburger-icon { width: 30px; height: 22px; position: relative; }
         .hamburger-icon span {
             display: block; position: absolute; height: 3px; width: 100%;
-            background: var(--accent-color); border-radius: 3px; left: 0;
+            background: var(--accent-bold); border-radius: 3px; left: 0;
             transition: all 0.35s ease-in-out;
         }
         .hamburger-icon span:nth-child(1) { top: 0px; }
         .hamburger-icon span:nth-child(2) { top: 9px; }
         .hamburger-icon span:nth-child(3) { top: 18px; }
-
-        /* Animasi Hamburger menjadi X */
+        
         .nav-open .hamburger-icon span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .nav-open .hamburger-icon span:nth-child(2) { opacity: 0; }
         .nav-open .hamburger-icon span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-        /* Overlay untuk latar belakang gelap */
         .overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1001;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(74, 20, 140, 0.2); /* Overlay ungu tipis */
+            backdrop-filter: blur(3px);
+            z-index: 1001; opacity: 0; transition: opacity 0.3s ease-in-out;
         }
-        .overlay.active {
-            display: block;
-            opacity: 1;
-        }
+        .overlay.active { display: block; opacity: 1; }
 
         /* -- 5. Responsive Design -- */
         @media (max-width: 992px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            .sidebar.nav-open {
-                transform: translateX(0);
-            }
-            .main-content {
-                margin-left: 0;
-            }
-            .container {
-                padding: 0 25px;
-            }
-            .mobile-header {
-                display: flex;
-            }
-            .mobile-logo {
-                font-size: 1.5rem;
-                font-weight: 700;
-                color: var(--accent-color);
-                text-decoration: none;
-            }
-            .order-steps {
-                flex-direction: column;
-            }
+            .sidebar { transform: translateX(-100%); width: 280px; box-shadow: 5px 0 30px rgba(0,0,0,0.1); }
+            .sidebar.nav-open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .container { padding: 0 25px; }
+            .mobile-header { display: flex; }
+            .order-steps { flex-direction: column; }
+            .order-steps::before { display: none; }
+            .step { background: white; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow-card); }
+            .step-number { box-shadow: none; margin-bottom: 15px; }
+            .hero h1 { font-size: 2.5rem; }
+            #contact { margin: 0 0 40px 0; border-radius: 0; padding: 60px 20px; }
         }
     </style>
 </head>
@@ -253,56 +350,55 @@
         <main>
             <section id="hero" class="hero">
                 <div class="container hero-content reveal">
-                    <h1>Butuh Bantuan Cepat dan Profesional untuk Tugas Anda?</h1>
-                    <p>Dari tugas kuliah, desain, hingga coding, kami adalah partner terpercaya Anda. Fokus pada hal yang penting, biarkan kami yang urus detailnya. Terbukti berkualitas sejak 2022.</p>
+                    <h1>Butuh Bantuan Cepat dan Profesional?</h1>
+                    <p>Dari tugas kuliah, desain, hingga coding. Kami adalah partner terpercaya dengan sentuhan profesional. Fokus pada hal penting, biarkan kami urus detailnya.</p>
                     <a href="#services" class="btn btn-primary">Lihat Semua Layanan</a>
                 </div>
             </section>
 
             <section id="services">
                 <div class="container">
-                    <h2 class="section-title reveal">Layanan Profesional Kami</h2>
-                    <p class="section-subtitle reveal">Kami menyediakan solusi komprehensif untuk berbagai kebutuhan akademis dan profesional Anda. Semua dikerjakan oleh tim yang berpengalaman di bidangnya.</p>
+                    <h2 class="section-title reveal">Layanan Kami</h2>
+                    <p class="section-subtitle reveal">Solusi komprehensif untuk kebutuhan akademis dan profesional Anda, dikerjakan dengan hati-hati.</p>
                     <div class="services-grid">
                         <div class="service-card reveal">
                             <h3>Joki Tugas & Laporan</h3>
                             <ul>
                                 <li>Makalah & Karya Ilmiah</li>
-                                <li>Tugas Kuliah</li>
+                                <li>Tugas Kuliah Harian</li>
                                 <li>Laporan KKN & Magang</li>
                                 <li>Essay & Laporan Praktikum</li>
-                                <li>Presentasi (PPT)</li>
-                                <li>Dan Lain-Lain</li>
+                                <li>Presentasi (PPT) Interaktif</li>
                             </ul>
                         </div>
                         <div class="service-card reveal" style="transition-delay: 0.1s;">
                             <h3>Jasa Desain Grafis</h3>
                             <ul>
-                                <li>Logo & Identitas Brand</li>
+                                <li>Logo & Branding Kit</li>
                                 <li>Poster & Banner Promosi</li>
-                                <li>Desain Konten Media Sosial</li>
+                                <li>Konten Media Sosial Estetik</li>
                                 <li>Kartu Nama & CV Kreatif</li>
-                                <li>Dan Lain-Lain</li>
+                                <li>Re-design Dokumen</li>
                             </ul>
                         </div>
                         <div class="service-card reveal" style="transition-delay: 0.2s;">
                             <h3>Jasa Coding & IT</h3>
                             <ul>
-                                <li>Web (HTML, PHP)</li>
-                                <li>Aplikasi (Java, Python, C++)</li>
-                                <li>UI/UX (Figma)</li>
+                                <li>Website (HTML, PHP, CSS)</li>
+                                <li>Aplikasi Desktop & Mobile</li>
+                                <li>UI/UX Design (Figma)</li>
                                 <li>Google Earth Engine</li>
-                                <li>Dan Lain-Lain</li>
+                                <li>Debugging & Error Fix</li>
                             </ul>
                         </div>
                         <div class="service-card reveal" style="transition-delay: 0.3s;">
                             <h3>Pengetikan & Dokumen</h3>
                             <ul>
-                                <li>Pengetikan & Olah Data</li>
-                                <li>Merapikan Dokumen (Skripsi, Tesis)</li>
-                                <li>Pembuatan CV Profesional</li>
-                                <li>Transkrip Interview</li>
-                                <li>Dan Lain-Lain</li>
+                                <li>Pengetikan Cepat</li>
+                                <li>Format Skripsi & Tesis</li>
+                                <li>Pembuatan CV ATS Friendly</li>
+                                <li>Transkrip Rekaman Audio</li>
+                                <li>Konversi Data (PDF to Word)</li>
                             </ul>
                         </div>
                     </div>
@@ -311,35 +407,35 @@
             
             <section id="benefits">
                 <div class="container">
-                    <h2 class="section-title reveal">Kenapa Memilih Joki By Maaafiqs?</h2>
-                    <p class="section-subtitle reveal">Kami tidak hanya mengerjakan, tapi kami memberikan jaminan kualitas dan pelayanan terbaik untuk setiap klien.</p>
+                    <h2 class="section-title reveal">Kenapa Memilih Kami?</h2>
+                    <p class="section-subtitle reveal">Kualitas, kecepatan, dan kenyamanan Anda adalah prioritas utama kami.</p>
                     <div class="benefits-grid">
                         <div class="benefit-item reveal">
                             <div class="benefit-icon">🚀</div>
                             <div class="benefit-text">
-                                <h3>Proses Cepat & Tepat Waktu</h3>
-                                <p>Kami memahami betapa berharganya waktu Anda. Pengerjaan selalu sesuai dengan deadline yang telah disepakati.</p>
+                                <h3>Proses Cepat</h3>
+                                <p>Deadline mepet? Tenang, kami bekerja efisien sesuai target waktu yang disepakati.</p>
                             </div>
                         </div>
                         <div class="benefit-item reveal">
-                            <div class="benefit-icon">💯</div>
+                            <div class="benefit-icon">✨</div>
                             <div class="benefit-text">
-                                <h3>Jaminan Bebas Plagiarisme</h3>
-                                <p>Setiap karya yang kami hasilkan adalah orisinal dan siap melalui uji plagiarisme apa pun.</p>
+                                <h3>Bebas Plagiarisme</h3>
+                                <p>Setiap karya ditulis orisinal. Kualitas terjamin dan aman untuk akademis.</p>
                             </div>
                         </div>
                          <div class="benefit-item reveal">
                             <div class="benefit-icon">🔄</div>
                             <div class="benefit-text">
                                 <h3>Revisi Gratis</h3>
-                                <p>Kepuasan Anda adalah prioritas. Kami menyediakan slot revisi untuk memastikan hasil sesuai ekspektasi Anda.</p>
+                                <p>Ada yang kurang pas? Kami sediakan slot revisi untuk memastikan hasil sempurna.</p>
                             </div>
                         </div>
                          <div class="benefit-item reveal">
-                            <div class="benefit-icon">💰</div>
+                            <div class="benefit-icon">💸</div>
                             <div class="benefit-text">
-                                <h3>Harga Kompetitif</h3>
-                                <p>Dapatkan layanan premium dengan harga yang sangat terjangkau, dirancang khusus untuk kantong mahasiswa dan umum.</p>
+                                <h3>Harga Mahasiswa</h3>
+                                <p>Layanan premium dengan harga yang sangat bersahabat di kantong.</p>
                             </div>
                         </div>
                     </div>
@@ -348,23 +444,23 @@
 
             <section id="how-to-order">
                 <div class="container">
-                    <h2 class="section-title reveal">Hanya 3 Langkah Mudah</h2>
-                    <p class="section-subtitle reveal">Proses pemesanan kami rancang agar mudah, cepat, dan transparan.</p>
+                    <h2 class="section-title reveal">Cara Pemesanan</h2>
+                    <p class="section-subtitle reveal">Tiga langkah mudah menuju tugas selesai.</p>
                     <div class="order-steps">
                         <div class="step reveal">
                             <div class="step-number">1</div>
                             <h3>Konsultasi</h3>
-                            <p>Hubungi kami via WhatsApp dan jelaskan detail tugas atau proyek Anda.</p>
+                            <p>Chat admin, kirim detail tugas, dan dapatkan estimasi harga.</p>
                         </div>
                         <div class="step reveal" style="transition-delay: 0.2s;">
                             <div class="step-number">2</div>
                             <h3>Deal & Proses</h3>
-                            <p>Setelah harga disepakati, kami akan segera memulai pengerjaan proyek Anda.</p>
+                            <p>Sepakat harga, lakukan pembayaran DP, dan kami langsung kerjakan.</p>
                         </div>
                         <div class="step reveal" style="transition-delay: 0.4s;">
                             <div class="step-number">3</div>
-                            <h3>Selesai & Revisi</h3>
-                            <p>Kami akan mengirimkan hasilnya tepat waktu dan siap untuk sesi revisi jika diperlukan.</p>
+                            <h3>Terima Hasil</h3>
+                            <p>File dikirim tepat waktu. Cek hasilnya, ajukan revisi jika perlu.</p>
                         </div>
                     </div>
                 </div>
@@ -373,10 +469,10 @@
             <section id="contact">
                 <div class="container reveal">
                     <h2 class="section-title">Siap Memulai?</h2>
-                    <p class="section-subtitle">Jangan biarkan tugas menumpuk. Hubungi kami sekarang untuk konsultasi gratis dan dapatkan penawaran terbaik!</p>
+                    <p class="section-subtitle">Jangan biarkan tugas menumpuk dan membuat stres. Hubungi kami sekarang!</p>
                     <div class="contact-buttons">
-                        <a href="https://wa.me/6281912537616" target="_blank" class="btn btn-dark">💬 Hubungi via WhatsApp</a>
-                        <a href="https://www.instagram.com/jokibymaaafiqs" target="_blank" class="btn btn-dark">📷 Cek Instagram Kami</a>
+                        <a href="https://wa.me/6281912537616" target="_blank" class="btn btn-white">💬 Chat WhatsApp</a>
+                        <a href="https://www.instagram.com/jokibymaaafiqs" target="_blank" class="btn btn-white">📷 Cek Instagram</a>
                     </div>
                 </div>
             </section>
@@ -384,19 +480,19 @@
 
         <footer class="footer">
             <div class="container">
-                <p>&copy; 2025 Joki by Maaafiqs. Semua Hak Cipta Dilindungi.</p>
+                <p>&copy; 2025 Joki by Maaafiqs. All Rights Reserved.</p>
             </div>
         </footer>
     </div>
 
     <script>
-        // --- Script Animasi Scroll ---
+        // --- Script Animasi Scroll (Tidak berubah) ---
         const revealElements = document.querySelectorAll('.reveal');
         const revealOnScroll = () => {
             const windowHeight = window.innerHeight;
             for (let i = 0; i < revealElements.length; i++) {
                 const elementTop = revealElements[i].getBoundingClientRect().top;
-                const elementVisible = 150;
+                const elementVisible = 100;
                 if (elementTop < windowHeight - elementVisible) {
                     revealElements[i].classList.add('visible');
                 }
@@ -405,7 +501,7 @@
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
 
-        // --- Script untuk Mobile Navigation (Hamburger Menu) ---
+        // --- Script Mobile Nav (Tidak berubah) ---
         const navToggle = document.querySelector('.nav-toggle');
         const sidebar = document.querySelector('.sidebar');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -416,14 +512,12 @@
             sidebar.classList.toggle('nav-open');
             overlay.classList.toggle('active');
             body.classList.toggle('no-scroll');
-            // Untuk animasi hamburger
             navToggle.closest('.mobile-header').classList.toggle('nav-open');
         }
 
         navToggle.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
 
-        // Menutup sidebar saat link di-klik (untuk navigasi halaman tunggal)
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (sidebar.classList.contains('nav-open')) {
